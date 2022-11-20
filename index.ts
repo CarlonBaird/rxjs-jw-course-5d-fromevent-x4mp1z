@@ -15,3 +15,7 @@ const triggerClick$ = new Observable((subscriber) => {
     subscriber.next(event);
   });
 });
+
+triggerClick$.subscribe((event: MouseEvent) =>
+  console.log(event.type, event.x, event.y)
+);
