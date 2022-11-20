@@ -21,7 +21,7 @@ const triggerClick$ = new Observable<MouseEvent>((subscriber) => {
     subscriber.next(event);
   });
 
-  //Teardown logic: this will run when the subscription
+  //Teardown logic: this will run when the subscription ends
 });
 
 const subscription2 = triggerClick$.subscribe((event) =>
