@@ -6,14 +6,26 @@ const triggerButton = document.querySelector('button#trigger');
 //   next: (event) => console.log(event),
 // });
 
-fromEvent<MouseEvent>(triggerButton, 'click').subscribe((event) =>
-  console.log(event.type, event.x, event.y)
-);
+// const subscription = fromEvent<MouseEvent>(triggerButton, 'click').subscribe(
+//   (event) => console.log(event.type, event.x, event.y)
+// );
+
+// setTimeout(() => {
+//   console.log('Unsubscribe');
+//   subscription.unsubscribe();
+// }, 5000);
 
 const triggerClick$ = new Observable<MouseEvent>((subscriber) => {
-  triggerButton.addEventListener('click', (event) => {
-    subscriber.next(event as MouseEvent);
+  triggerButton.addEventListener('click', (event: MouseEvent) => {
+    subscriber.next(event);
   });
 });
 
-triggerClick$.subscribe((event) => console.log(event.type, event.x, event.y));
+const subscription2 = triggerClick$.subscribe((event) =>
+  console.log(event.type, event.x, event.y)
+);
+
+setTimeout(() => {
+  console.log('Unsubscribe');
+  subscription2.unsubscribe();
+}, 5000);
