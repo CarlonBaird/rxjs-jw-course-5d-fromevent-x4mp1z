@@ -16,12 +16,18 @@ const triggerButton = document.querySelector('button#trigger');
 // }, 5000);
 
 const triggerClick$ = new Observable<MouseEvent>((subscriber) => {
-  triggerButton.addEventListener('click', (event: MouseEvent) => {
-    console.log('Event callback executed');
-    subscriber.next(event);
-  });
+  const clickHandlerFn = triggerButton.addEventListener(
+    'click',
+    (event: MouseEvent) => {
+      console.log('Event callback executed');
+      subscriber.next(event);
+    }
+  );
 
   //Teardown logic: this will run when the subscription ends
+  return () => {
+    triggerButton.removeEventListener('click', clickHandlerFn);
+  };
 });
 
 const subscription2 = triggerClick$.subscribe((event) =>
