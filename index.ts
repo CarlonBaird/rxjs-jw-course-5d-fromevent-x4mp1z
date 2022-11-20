@@ -20,6 +20,8 @@ const triggerClick$ = new Observable<MouseEvent>((subscriber) => {
     console.log('Event callback executed');
     subscriber.next(event);
   });
+
+  //Teardown logic: this will run when the subscription
 });
 
 const subscription2 = triggerClick$.subscribe((event) =>
