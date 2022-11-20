@@ -17,6 +17,7 @@ const triggerButton = document.querySelector('button#trigger');
 
 const triggerClick$ = new Observable<MouseEvent>((subscriber) => {
   triggerButton.addEventListener('click', (event: MouseEvent) => {
+    console.log('Event callback executed');
     subscriber.next(event);
   });
 });
