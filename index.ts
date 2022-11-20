@@ -10,12 +10,10 @@ fromEvent<MouseEvent>(triggerButton, 'click').subscribe((event) =>
   console.log(event.type, event.x, event.y)
 );
 
-const triggerClick$ = new Observable((subscriber) => {
+const triggerClick$ = new Observable<MouseEvent>((subscriber) => {
   triggerButton.addEventListener('click', (event) => {
-    subscriber.next(event);
+    subscriber.next(event as MouseEvent);
   });
 });
 
-triggerClick$.subscribe((event: MouseEvent) =>
-  console.log(event.type, event.x, event.y)
-);
+triggerClick$.subscribe((event) => console.log(event.type, event.x, event.y));
